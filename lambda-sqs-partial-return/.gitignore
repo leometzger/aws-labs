@@ -1,0 +1,6 @@
+.terraform/
+bin/
+*.zip
+*.hcl
+*.tfstate.*
+*.tfstate

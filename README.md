@@ -1,5 +1,5 @@
 <p align="center">
-<img style="max-width: 360px" src="https://user-images.githubusercontent.com/15220162/224574915-6d0a36f6-debe-45a0-bb19-5baf60f1b97c.svg" alt="Labs illustration" />
+<img style="width: 360px" src="https://user-images.githubusercontent.com/15220162/224574915-6d0a36f6-debe-45a0-bb19-5baf60f1b97c.svg" alt="Labs illustration" />
 </p>
 
 # My personal AWS Labs
