@@ -22,7 +22,7 @@ data "aws_iam_policy_document" "allow_save_logs" {
   statement {
     effect    = "Allow"
     actions   = ["logs:CreateLogGroup"]
-    resources = ["arn:aws:logs:${var.region}:${var.account_id}:*"]
+    resources = ["arn:aws:logs:${var.aws_region}:${var.account_id}:*"]
   }
 
   statement {
@@ -32,7 +32,7 @@ data "aws_iam_policy_document" "allow_save_logs" {
       "logs:PutLogEvents"
     ]
     resources = [
-      "arn:aws:logs:${var.region}:${var.account_id}:log-group:/aws/lambda/${aws_lambda_function.kinesis_stream_consumer.function_name}:*"
+      "arn:aws:logs:${var.aws_region}:${var.account_id}:log-group:/aws/lambda/${aws_lambda_function.kinesis_stream_consumer.function_name}:*"
     ]
   }
 }
