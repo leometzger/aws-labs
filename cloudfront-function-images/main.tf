@@ -12,6 +12,17 @@ resource "aws_s3_bucket_acl" "sample_bucket_acl" {
 }
 
 
+resource "aws_lambda_function" "lambda_resize_image" {
+  filename      = "resize-image-lambda.zip"
+  function_name = "lambda-choose-image"
+  role          = aws_iam_role.iam_for_lambda.arn
+
+  source_code_hash = data.archive_file.lambda.output_base64sha256
+  runtime          = "nodejs16.x"
+  handler          = "lambda_sqs_partial_return"
+}
+
+
 resource "aws_cloudfront_distribution" "s3_distribution" {
   enabled             = true
   default_root_object = "index.html"
