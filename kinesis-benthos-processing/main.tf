@@ -8,7 +8,6 @@ resource "aws_kinesis_stream" "source_stream" {
   }
 }
 
-
 resource "aws_kinesis_stream" "destination_stream" {
   name             = "benthos-kinesis-output"
   shard_count      = 1

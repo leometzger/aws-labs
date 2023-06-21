@@ -2,6 +2,7 @@
 build:
 	cd lambda; GOOS=linux GOARCH=amd64 go build -o "bin/kinesis_consumer" main.go;
 
+
 .PHONY: run-local 
 run-local:
 	cd lambda; docker run --network host --rm -v $(pwd)/config.yaml:/benthos.yaml jeffail/benthos;

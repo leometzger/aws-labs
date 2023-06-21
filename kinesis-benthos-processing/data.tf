@@ -10,7 +10,6 @@ data "aws_iam_policy_document" "assume_role" {
   }
 }
 
-
 data "archive_file" "lambda" {
   type        = "zip"
   source_file = "lambda/bin/kinesis_consumer"
