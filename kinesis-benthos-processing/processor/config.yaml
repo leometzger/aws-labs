@@ -1,0 +1,30 @@
+input:
+  label: "kinesis_input_stream"
+  aws_kinesis:
+    streams: ["benthos-kinesis-input", "benthos-kinesis-source"]
+    dynamodb:
+      table: "kinesis-benthos-control"
+      create: true
+      billing_mode: PROVISIONED
+      read_capacity_units: 5
+      write_capacity_units: 5
+    checkpoint_limit: 1024
+    commit_period: 5s
+    start_from_oldest: true
+    region: us-west-1
+    batching:
+      count: 10
+      period: 10s
+
+pipeline:
+  threads: 1
+  processors:
+    - label: "processor"
+      customplug:
+        seconds: 1
+
+output:
+  aws_kinesis:
+    stream: "benthos-kinesis-output"
+    partition_key: "benthos"
+    region: us-west-1

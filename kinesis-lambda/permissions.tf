@@ -14,3 +14,4 @@ resource "aws_iam_role_policy_attachment" "attach_kinesis_consumer_policy" {
   role       = aws_iam_role.iam_for_kinesis_consumer.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaKinesisExecutionRole"
 }
+

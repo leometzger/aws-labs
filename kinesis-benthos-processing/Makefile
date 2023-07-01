@@ -1,6 +1,6 @@
 .PHONY: build 
 build:
-	cd lambda; GOOS=linux GOARCH=amd64 go build -o "bin/kinesis_consumer" main.go;
+	echo "build";
 
 
 .PHONY: run-local 
