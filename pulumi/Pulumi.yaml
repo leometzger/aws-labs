@@ -1,0 +1,3 @@
+name: aws-labs-pulumi
+runtime: go
+description: Leo Metzger's AWS Labs

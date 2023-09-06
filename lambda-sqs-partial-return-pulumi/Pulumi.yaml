@@ -1,3 +1,0 @@
-name: lambda-sqs-partial-return-pulumi
-runtime: go
-description: A minimal AWS Go Pulumi program

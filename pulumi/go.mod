@@ -1,9 +1,10 @@
-module kinesis-lambda-pulumi
+module aws-labs-pulumi
 
 go 1.18
 
 require (
 	github.com/pulumi/pulumi-aws/sdk/v5 v5.42.0
+	github.com/pulumi/pulumi-aws/sdk/v6 v6.0.2
 	github.com/pulumi/pulumi/sdk/v3 v3.78.1
 )
 
