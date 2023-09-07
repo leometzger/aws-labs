@@ -51,7 +51,7 @@ func NewLambdaRole(ctx *pulumi.Context, resourceName string, roleName string) (*
 		return nil, err
 	}
 
-	role, err := iam.NewRole(ctx, "lambda-role", &iam.RoleArgs{
+	role, err := iam.NewRole(ctx, roleName, &iam.RoleArgs{
 		Name:             pulumi.String(roleName),
 		AssumeRolePolicy: pulumi.String(assumeRolePolicy.Json),
 	})
@@ -59,7 +59,7 @@ func NewLambdaRole(ctx *pulumi.Context, resourceName string, roleName string) (*
 		return nil, err
 	}
 
-	_, err = iam.NewPolicyAttachment(ctx, "lambda-basic-execution-policy", &iam.PolicyAttachmentArgs{
+	_, err = iam.NewPolicyAttachment(ctx, roleName+"lambda-basic-execution-policy", &iam.PolicyAttachmentArgs{
 		Name:      pulumi.String("lambda-basic-execution-policy"),
 		Roles:     pulumi.All(role),
 		PolicyArn: iam.ManagedPolicyAWSLambdaBasicExecutionRole,
