@@ -19,24 +19,24 @@ type LambdaInfo struct {
 
 func GetLambdaInfo(implementation LambdaImplementation) *LambdaInfo {
 	if implementation == KinesisConsumerLambda {
-		kinesisLambdaPath, err := filepath.Abs("./lambdas/kinesis-consumer")
+		kinesisLambdaPath, err := filepath.Abs("bin/kinesis.zip")
 		checkError(err)
 
 		return &LambdaInfo{
 			Name:        "aws-labs-kinesis-consumer",
 			Path:        kinesisLambdaPath,
-			HandlerName: "kinesis_consumer",
+			HandlerName: "bootstrap",
 		}
 	}
 
 	if implementation == SqsPartialReturn {
-		sqsPartialReturnPath, err := filepath.Abs("./lambdas/sqs-partial-return")
+		sqsPartialReturnPath, err := filepath.Abs("bin/sqs.zip")
 		checkError(err)
 
 		return &LambdaInfo{
 			Name:        "aws-labs-sqs-partial-return",
 			Path:        sqsPartialReturnPath,
-			HandlerName: "lambda_sqs_partial_return",
+			HandlerName: "bootstrap",
 		}
 	}
 

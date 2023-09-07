@@ -9,7 +9,7 @@ import (
 
 func main() {
 	kinesisLambda := lambdas.GetLambdaInfo(lambdas.KinesisConsumerLambda)
-	sqsLambda := lambdas.GetLambdaInfo(lambdas.SqsPartialReturn)
+	// sqsLambda := lambdas.GetLambdaInfo(lambdas.SqsPartialReturn)
 
 	pulumi.Run(func(ctx *pulumi.Context) error {
 		labs.NewKinesisLambda(ctx, &labs.KinesisLambdaOptions{
@@ -20,12 +20,12 @@ func main() {
 			LambdaPath:        kinesisLambda.Path,
 		})
 
-		labs.NewSQSLambda(ctx, &labs.SQSLambdaOptions{
-			QueueName:         "labs-sqs-queue",
-			LambdaName:        sqsLambda.Name,
-			LambdaHandlerName: sqsLambda.HandlerName,
-			LambdaPath:        sqsLambda.Path,
-		})
+		// labs.NewSQSLambda(ctx, &labs.SQSLambdaOptions{
+		// 	QueueName:         "labs-sqs-queue",
+		// 	LambdaName:        sqsLambda.Name,
+		// 	LambdaHandlerName: sqsLambda.HandlerName,
+		// 	LambdaPath:        sqsLambda.Path,
+		// })
 
 		return nil
 	})

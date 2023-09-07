@@ -14,15 +14,13 @@ type GoLambdaOptions struct {
 }
 
 func NewGoLambda(ctx *pulumi.Context, options *GoLambdaOptions) (*lambda.Function, error) {
-	assetArchive := pulumi.NewAssetArchive(map[string]interface{}{
-		".": options.Archive,
-	})
 	function, err := lambda.NewFunction(ctx, options.Name, &lambda.FunctionArgs{
-		Name:    pulumi.String(options.Name),
-		Handler: pulumi.String(options.HandlerName),
-		Runtime: pulumi.String("go1.x"),
-		Code:    assetArchive,
-		Role:    options.Role.Arn,
+		Name:          pulumi.String(options.Name),
+		Handler:       pulumi.String(options.HandlerName),
+		Runtime:       pulumi.String("provided.al2"),
+		Code:          options.Archive,
+		Role:          options.Role.Arn,
+		Architectures: pulumi.StringArray{pulumi.String("x86_64")},
 	})
 	if err != nil {
 		return nil, err
