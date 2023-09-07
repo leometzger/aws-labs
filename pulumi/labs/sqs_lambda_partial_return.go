@@ -40,10 +40,10 @@ func NewSQSLambda(ctx *pulumi.Context, options *SQSLambdaOptions) (*SQSLambdaOut
 	}
 
 	function, err := NewGoLambda(ctx, &GoLambdaOptions{
-		Name:        options.LambdaName,
 		Role:        role,
-		HandlerName: "",
-		Archive:     pulumi.NewFileArchive(""),
+		Name:        options.LambdaName,
+		HandlerName: options.LambdaHandlerName,
+		Archive:     pulumi.NewFileArchive(options.LambdaPath),
 	})
 	if err != nil {
 		return nil, err

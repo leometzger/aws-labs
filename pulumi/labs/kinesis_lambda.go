@@ -26,7 +26,7 @@ func NewKinesisLambda(ctx *pulumi.Context, options *KinesisLambdaOptions) (*Kine
 		return nil, err
 	}
 
-	_, err = iam.NewPolicyAttachment(ctx, "lambda-kinesis-attach", &iam.PolicyAttachmentArgs{
+	_, err = iam.NewPolicyAttachment(ctx, options.LambdaName+"-lambda-kinesis-execution", &iam.PolicyAttachmentArgs{
 		Name:      pulumi.String("lambda-kinesis-policy"),
 		Roles:     pulumi.All(role),
 		PolicyArn: iam.ManagedPolicyAWSLambdaKinesisExecutionRole,
@@ -35,7 +35,7 @@ func NewKinesisLambda(ctx *pulumi.Context, options *KinesisLambdaOptions) (*Kine
 		return nil, err
 	}
 
-	stream, err := kinesis.NewStream(ctx, "lambda-integration-kinesis-stream", &kinesis.StreamArgs{
+	stream, err := kinesis.NewStream(ctx, "aws-labs-kinesis-stream", &kinesis.StreamArgs{
 		Name:            pulumi.String(options.StreamName),
 		ShardCount:      pulumi.Int(options.ShardCount),
 		RetentionPeriod: pulumi.Int(24),
@@ -48,16 +48,16 @@ func NewKinesisLambda(ctx *pulumi.Context, options *KinesisLambdaOptions) (*Kine
 	}
 
 	function, err := NewGoLambda(ctx, &GoLambdaOptions{
+		Role:        role,
 		Name:        options.LambdaName,
 		HandlerName: options.LambdaHandlerName,
-		Role:        role,
 		Archive:     pulumi.NewFileArchive(options.LambdaPath),
 	})
 	if err != nil {
 		return nil, err
 	}
 
-	_, err = lambda.NewEventSourceMapping(ctx, "kinesis-lambda", &lambda.EventSourceMappingArgs{
+	_, err = lambda.NewEventSourceMapping(ctx, options.LambdaName+"-eventsource-kinesis", &lambda.EventSourceMappingArgs{
 		EventSourceArn:   stream.Arn,
 		FunctionName:     function.Name,
 		StartingPosition: pulumi.String("LATEST"),

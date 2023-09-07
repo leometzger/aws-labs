@@ -25,7 +25,7 @@ func GetLambdaInfo(implementation LambdaImplementation) *LambdaInfo {
 		return &LambdaInfo{
 			Name:        "aws-labs-kinesis-consumer",
 			Path:        kinesisLambdaPath,
-			HandlerName: "",
+			HandlerName: "kinesis_consumer",
 		}
 	}
 
@@ -36,7 +36,7 @@ func GetLambdaInfo(implementation LambdaImplementation) *LambdaInfo {
 		return &LambdaInfo{
 			Name:        "aws-labs-sqs-partial-return",
 			Path:        sqsPartialReturnPath,
-			HandlerName: "",
+			HandlerName: "lambda_sqs_partial_return",
 		}
 	}
 
