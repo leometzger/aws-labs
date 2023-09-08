@@ -1,6 +1,8 @@
 package labs
 
 import (
+	"aws-labs-pulumi/labs/labsx"
+
 	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/iam"
 	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/kinesis"
 	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/lambda"
@@ -21,7 +23,7 @@ type KinesisLambdaOutput struct {
 }
 
 func NewKinesisLambda(ctx *pulumi.Context, options *KinesisLambdaOptions) (*KinesisLambdaOutput, error) {
-	role, err := NewLambdaRole(ctx, "kinesis-lambda-role", "kinesis-lambda-role")
+	role, err := labsx.NewLambdaRole(ctx, "kinesis-lambda-role", "kinesis-lambda-role")
 	if err != nil {
 		return nil, err
 	}
@@ -47,7 +49,7 @@ func NewKinesisLambda(ctx *pulumi.Context, options *KinesisLambdaOptions) (*Kine
 		return nil, err
 	}
 
-	function, err := NewGoLambda(ctx, &GoLambdaOptions{
+	function, err := labsx.NewGoLambda(ctx, &labsx.GoLambdaOptions{
 		Role:        role,
 		Name:        options.LambdaName,
 		HandlerName: options.LambdaHandlerName,

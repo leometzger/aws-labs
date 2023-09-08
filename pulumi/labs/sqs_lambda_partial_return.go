@@ -1,6 +1,8 @@
 package labs
 
 import (
+	"aws-labs-pulumi/labs/labsx"
+
 	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/iam"
 	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/lambda"
 	"github.com/pulumi/pulumi-aws/sdk/v5/go/aws/sqs"
@@ -20,7 +22,7 @@ type SQSLambdaOutput struct {
 }
 
 func NewSQSLambda(ctx *pulumi.Context, options *SQSLambdaOptions) (*SQSLambdaOutput, error) {
-	role, err := NewLambdaRole(ctx, "sqs-lambda-role", "labs-sqs-lambda-role")
+	role, err := labsx.NewLambdaRole(ctx, "sqs-lambda-role", "labs-sqs-lambda-role")
 	if err != nil {
 		return nil, err
 	}
@@ -39,7 +41,7 @@ func NewSQSLambda(ctx *pulumi.Context, options *SQSLambdaOptions) (*SQSLambdaOut
 		return nil, err
 	}
 
-	function, err := NewGoLambda(ctx, &GoLambdaOptions{
+	function, err := labsx.NewGoLambda(ctx, &labsx.GoLambdaOptions{
 		Role:        role,
 		Name:        options.LambdaName,
 		HandlerName: options.LambdaHandlerName,
