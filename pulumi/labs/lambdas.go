@@ -1,4 +1,4 @@
-package lambdas
+package labs
 
 import (
 	"path/filepath"
