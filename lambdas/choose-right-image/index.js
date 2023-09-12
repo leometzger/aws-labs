@@ -21,7 +21,7 @@ function isMobileAgent(headers) {
 		&& headers['cloudfront-is-tablet-viewer'][0].value === 'false';
 }
 
-exports.handler = (event, context, callback) => {
+exports.handler = (event, _, callback) => {
 	const request = event.Records[0].cf.request;
 	const headers = request.headers;
 
@@ -38,7 +38,6 @@ exports.handler = (event, context, callback) => {
 		request.uri = request.uri.replace(replacer, "_mobile." + extension);
 	}
 
-	console.log(`Request uri set to "${request.uri}"`);
 	callback(null, request);
 };
 
