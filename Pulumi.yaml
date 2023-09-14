@@ -1,6 +1,4 @@
 name: aws-labs
 description: Leo Metzger's AWS Labs
-runtime: 
+runtime:
   name: go
-    # options:
-    #   buildTarget: ./main.go

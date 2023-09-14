@@ -13,10 +13,10 @@ jobs:
           go-version: 1.21
           cache: true
           cache-dependency-path: |
+            go.sum
             aws/lambdas/kinesis-consumer/go.sum 
             aws/lambdas/sqs-partial-return/go.sum
             aws/containers/benthos-custom-processor/go.sum
-            pulumi/go.sum
 
       - name: Build
         run: make build
