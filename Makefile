@@ -14,7 +14,7 @@ build-kinesis:
 
 .PHONY: build-lambdas
 build:
-	mkdir -p pulumi/bin;
+	mkdir -p bin;
 	make build-sqs && make build-kinesis; 
 
 .PHONY: deploy

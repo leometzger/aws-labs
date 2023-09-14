@@ -4,22 +4,43 @@
 
 # My personal AWS Labs
 
-This is a repository with code of some of my lab projects using AWS.
-The code here is made mainly for learning purpose.
+This repository is dedicated to learning and proof of concept purposes. You can run if you want it.
 
-## To run a lab
+## Getting Started
 
-There are some steps to follow to be able to run these labs.
+To run these labs, follow the steps:
 
-You can run all labs at one time, but I recomend you to run one lab at once.
+### Step 1: Install Pulumi
 
-### Install Pulumi
-
-I used pulumi to develop my labs, so if you want to have fun with these
-stuf, you should first install pulumi through
+Pulumi is the primary tool used for developing and deploying these labs. If you haven't already installed Pulumi, you can do so by running the following command:
 
 ```sh
 curl -sSL https://get.pulumi.com | sh
 ```
 
-### Choosing the lab
+### Step 2: Install Go dependencies
+
+```sh
+go get
+```
+
+### Step 3: Configure the Lab
+
+Within the main.go file and pulumi.yaml, make any necessary configurations for the lab you've chosen.
+This may include specifying AWS regions, adjusting settings, or providing input parameters as required by the
+lab instructions.
+
+### Step 4: Deploy the stack on AWS
+
+To deploy it, run the following command from your terminal:
+
+```sh
+make build && make deploy
+```
+
+This command will build the necessary resources and deploy the lab on AWS.
+Make sure to follow any prompts or instructions that appear during the deployment process.
+
+## Sugestions
+
+You are welcome to provide feedback or suggestions. I will be happy to try to implement.
