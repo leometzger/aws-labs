@@ -54,6 +54,9 @@ func NewSQSLambda(ctx *pulumi.Context, options *SQSLambdaOptions) (*SQSLambdaOut
 	_, err = lambda.NewEventSourceMapping(ctx, "sqs-lambda-event-source-mapping", &lambda.EventSourceMappingArgs{
 		EventSourceArn: queue.Arn,
 		FunctionName:   function.Name,
+		FunctionResponseTypes: pulumi.StringArray{
+			pulumi.String("ReportBatchItemFailures"),
+		},
 	})
 	if err != nil {
 		return nil, err

@@ -1,4 +1,4 @@
-name: aws-labs-pulumi
+name: aws-labs
 description: Leo Metzger's AWS Labs
 runtime: 
   name: go

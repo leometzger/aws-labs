@@ -1,27 +1,24 @@
 LAMBDA_GO_ARCH ?= amd64
 
 .PHONY: build-sqs-lambda
-build-sqs-lambda:
-	cd lambdas/sqs-partial-return; 
-	CGO_ENABLED=0 GOOS=linux GOARCH=$(LAMBDA_GO_ARCH) go build -tags lambda.norpc -o bin/sqs/bootstrap main.go;
-	zip -j bin/sqs.zip bin/sqs/bootstrap;
+build-sqs:
+	cd aws/lambdas/sqs-partial-return && CGO_ENABLED=0 GOOS=linux GOARCH=$(LAMBDA_GO_ARCH) go build -tags lambda.norpc -o bin/bootstrap main.go;
+	zip -j pulumi/bin/sqs.zip aws/lambdas/sqs-partial-return/bin/bootstrap;
 
 
 .PHONY: build-kinesis-consumer-lambda
-build-kinesis-consumer-lambda:
-	cd lambdas/kinesis-consumer; 
-	CGO_ENABLED=0 GOOS=linux GOARCH=$(LAMBDA_GO_ARCH) go build -tags lambda.norpc -o bin/kinesis/bootstrap main.go; 
-	zip -j bin/kinesis.zip ./bin/kinesis/bootstrap;
-
+build-kinesis:
+	cd aws/lambdas/kinesis-consumer && CGO_ENABLED=0 GOOS=linux GOARCH=$(LAMBDA_GO_ARCH) go build -tags lambda.norpc -o bin/bootstrap main.go;
+	zip -j pulumi/bin/kinesis.zip aws/lambdas/kinesis-consumer/bin/bootstrap;
 
 .PHONY: build
 build:
-	make build-sqs-lambda && make build-kinesis-consumer-lambda;
-
+	mkdir -p pulumi/bin;
+	make build-sqs && make build-kinesis; 
 
 .PHONY: deploy
 deploy:
-	make build; pulumi up;
+	make build; cd pulumi; pulumi up;
 
 
 .PHONY: destroy
