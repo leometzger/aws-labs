@@ -3,3 +3,5 @@ bin/
 *.zip
 .env
 *.env
+
+Pulumi.dms-labs.yaml

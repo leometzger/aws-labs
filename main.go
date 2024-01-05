@@ -23,6 +23,18 @@ func main() {
 		// 	LambdaPath:        sqsLambda.Path,
 		// })
 
+		// _, err := labs.NewDmsMysqlPostgres(ctx, &labs.DmsMysqlPostgresOptions{
+		// 	AlocatedStorage: 20,
+		// 	KeyPairName:     "metzger-pair",
+		// 	AmiId:           "ami-0748d13ffbc370c2b",
+
+		// 	// Fill these before execution
+		// 	PostgresUser:    "",
+		// 	PostgresPass:    "",
+		// 	MariaDBUser:     "",
+		// 	MariaDBPassword: "",
+		// })
+
 		return nil
 	})
 }
