@@ -1,6 +1,8 @@
 package main
 
 import (
+	"aws-labs-pulumi/labs"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -34,6 +36,11 @@ func main() {
 		// 	MariaDBUser:     "",
 		// 	MariaDBPassword: "",
 		// })
+
+		_, err := labs.NewGetStartedEks(ctx, &labs.GetStartedEKSOptions{})
+		if err != nil {
+			return err
+		}
 
 		return nil
 	})
